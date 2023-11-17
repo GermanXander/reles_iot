@@ -34,6 +34,13 @@ def sub_cb(topic, msg):
     if msg==b"encender":
         led.value(1)
         sw.value(1)
+    if msg==b"pulso":
+        led.value(1)
+        sw.value(1)
+        mqtt.publish(f"iot/{CLIENT_ID}/estado",str(sw.value()))
+        time.sleep(.6)
+        led.value(0)
+        sw.value(0)
     mqtt.publish(f"iot/{CLIENT_ID}/estado",str(sw.value()))
 
 mqtt.set_callback(sub_cb)
